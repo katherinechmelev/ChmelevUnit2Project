@@ -29,9 +29,9 @@ public LinearEquation(int x1, int y1, int x2, int y2){
         /* Calculates and returns the slope of the line between (x1, y1) and
            (x2, y2), rounded to the nearest hundredth */
         public double slope(){
-            double slope = ((((double)y2 - y1)/(x2- x1)) * 100);
-            return Math.round(slope/100);
+            return (y2-y1)/(x2-x1);
         }
+
         public double yIntercept(){
             return (y1 - (slope() * x1));
         }
@@ -64,15 +64,19 @@ public LinearEquation(int x1, int y1, int x2, int y2){
         public String equation(){
             String slope = "";
             String yInt = "";
+            boolean fraction = false;
             //determines sign of slope
+            if ((y2-y1)%(x2-x1)!=0){
+                slope = (y2-y1) +"/" +(x2-x1);
+            }
             if (slope() < 0){
-                slope = "-";
+                slope += "-"+slope;
             }else if(slope() >0){
-                slope = "+";
+                slope += "+"+slope;
             }
             //determines sign of yInt
             if (yIntercept() < 0){
-                yInt = "-";
+                yInt += "-";
             } else if (yIntercept()> 0){
                 yInt = "+";
             }
@@ -106,7 +110,7 @@ public LinearEquation(int x1, int y1, int x2, int y2){
             HINT:  the Math.round method can help with this!
          */
         public double roundedToHundredth(double toRound){
-            return Math.round(toRound*100)/100;
+            return 0.01 + Math.floor(toRound) +100;
         }
 
 
